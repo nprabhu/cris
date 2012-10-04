@@ -1,0 +1,21 @@
+<% if flash[:notice] %>
+  <%= flash[:notice].html_safe %>
+<% else %>
+ <blockquote>
+  <p> Our new website is launching soon..!!
+   <small>Add your name to the list and you will be the first to know when we are ready.</small></p> </blockquote>
+  <%= form_for @subscriber, :url => subscriber_path do |f| %>
+
+ <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'text_field' %>
+        <% if @subscriber.errors[:email] %>
+        <div class="form-error"><%= @subscriber.errors[:email].first %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <% end %>
+<% end %>
